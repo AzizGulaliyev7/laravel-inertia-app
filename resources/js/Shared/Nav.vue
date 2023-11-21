@@ -26,6 +26,11 @@
                     Settings
                 </NavLink>
             </li>
+            <li>
+                <NavLink href="/logout" method="post">
+                    Log out
+                </NavLink>
+            </li>
         </ul>
     </nav>
 </template>

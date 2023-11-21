@@ -7,7 +7,9 @@ createInertiaApp({
     resolve: async name => {
         let page = (await import(`./Pages/${name}`)).default;
 
-        page.layout ??= Layout;
+        if (page.layout === undefined) {
+            page.layout = Layout;
+        }
 
         return page;
     },
@@ -20,7 +22,7 @@ createInertiaApp({
             .mount(el)
     },
 
-    title: title => `My app + ${title}`
+    title: title => `My app ${title}`
 });
 
 InertiaProgress.init({
