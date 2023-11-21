@@ -11,6 +11,11 @@ class UserPolicy
 
     public function create(User $user)
     {
-        $user->email == 'user8@gmail.com'
+        return $user->email == 'user8@gmail.com';
+    }
+
+    public function edit(User $user, User $model)
+    {
+        return (boolean) mt_rand(0, 1);
     }
 }
