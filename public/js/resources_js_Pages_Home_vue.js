@@ -13,6 +13,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Services_SintaxHighlighting__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Services/SintaxHighlighting */ "./resources/js/Services/SintaxHighlighting.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _Composables_useClipboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Composables/useClipboard */ "./resources/js/Composables/useClipboard.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -25,18 +27,10 @@ __webpack_require__.r(__webpack_exports__);
     __expose();
     var props = __props;
     var block = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
-    var copied = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
-    var copyToClipBoard = function copyToClipBoard() {
-      if (navigator && navigator.clipboard) {
-        navigator.clipboard.writeText(props.code);
-        copied.value = true;
-        setTimeout(function () {
-          copied.value = false;
-        }, 3000);
-        return;
-      }
-      alert('Apologies, your browser does not support clipboard API.');
-    };
+    var _useClipboard = (0,_Composables_useClipboard__WEBPACK_IMPORTED_MODULE_2__.useClipboard)(props.code),
+      copy = _useClipboard.copy,
+      copied = _useClipboard.copied,
+      supported = _useClipboard.supported;
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
       (0,_Services_SintaxHighlighting__WEBPACK_IMPORTED_MODULE_0__.highlightElement)(block.value);
     });
@@ -53,23 +47,32 @@ __webpack_require__.r(__webpack_exports__);
       set block(v) {
         block = v;
       },
+      get copy() {
+        return copy;
+      },
+      set copy(v) {
+        copy = v;
+      },
       get copied() {
         return copied;
       },
       set copied(v) {
         copied = v;
       },
-      get copyToClipBoard() {
-        return copyToClipBoard;
+      get supported() {
+        return supported;
       },
-      set copyToClipBoard(v) {
-        copyToClipBoard = v;
+      set supported(v) {
+        supported = v;
       },
       get highlightElement() {
         return _Services_SintaxHighlighting__WEBPACK_IMPORTED_MODULE_0__.highlightElement;
       },
       onMounted: vue__WEBPACK_IMPORTED_MODULE_1__.onMounted,
-      ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref
+      ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref,
+      get useClipboard() {
+        return _Composables_useClipboard__WEBPACK_IMPORTED_MODULE_2__.useClipboard;
+      }
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -131,15 +134,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
+  key: 0,
   "class": "bg-gray-800 text-white flex justify-end px-2 py1 text-xs border-b border-gray-700"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [$setup.supported ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("header", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "hover:bg-gray-600 rounded px-2",
     onClick: _cache[0] || (_cache[0] = function () {
-      return $setup.copyToClipBoard && $setup.copyToClipBoard.apply($setup, arguments);
+      return $setup.copy && $setup.copy.apply($setup, arguments);
     })
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.copied ? 'Copied' : 'Copy'), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("pre", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("            "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("code", {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.copied ? 'Copied' : 'Copy'), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("pre", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("            "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("code", {
     ref: "block"
   }, "\n                " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.code) + "\n            ", 513 /* TEXT, NEED_PATCH */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("\n        ")])]);
 }
@@ -178,6 +182,38 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Highlight"], {
     code: $setup.snippet
   }, null, 8 /* PROPS */, ["code"])], 64 /* STABLE_FRAGMENT */);
+}
+
+/***/ }),
+
+/***/ "./resources/js/Composables/useClipboard.js":
+/*!**************************************************!*\
+  !*** ./resources/js/Composables/useClipboard.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useClipboard: () => (/* binding */ useClipboard)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+function useClipboard(text) {
+  var copied = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+  var supported = navigator && 'clipboard' in navigator;
+  var copy = function copy() {
+    if (supported) {
+      navigator.clipboard.writeText(text);
+      copied.value = true;
+      return;
+    }
+    alert('Apologies, your browser does not support clipboard API.');
+  };
+  return {
+    copy: copy,
+    copied: copied,
+    supported: supported
+  };
 }
 
 /***/ }),
