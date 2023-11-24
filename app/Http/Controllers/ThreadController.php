@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Resources\ThreadResource;
+use App\Models\Thread;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+class ThreadController extends Controller
+{
+    public function index() {
+        return Inertia::render('Threads/Index', [
+            'threads' => ThreadResource::collection(
+                Thread::with('author')->take(50)->latest()->get()
+            )
+        ]);
+    }
+}

@@ -159,10 +159,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["active"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_NavLink, {
     href: "/users",
-    active: _ctx.$page.component === 'Users'
+    active: _ctx.$page.component === 'Users/Index'
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Users ")];
+    }),
+    _: 1 /* STABLE */
+  }, 8 /* PROPS */, ["active"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_NavLink, {
+    href: "/threads",
+    active: _ctx.$page.component === 'Threads/Index'
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Threads ")];
     }),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["active"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_NavLink, {
@@ -508,6 +516,14 @@ var map = {
 	"./Settings.vue": [
 		"./resources/js/Pages/Settings.vue",
 		"resources_js_Pages_Settings_vue"
+	],
+	"./Threads/Index": [
+		"./resources/js/Pages/Threads/Index.vue",
+		"resources_js_Pages_Threads_Index_vue"
+	],
+	"./Threads/Index.vue": [
+		"./resources/js/Pages/Threads/Index.vue",
+		"resources_js_Pages_Threads_Index_vue"
 	],
 	"./Users/Create": [
 		"./resources/js/Pages/Users/Create.vue",
