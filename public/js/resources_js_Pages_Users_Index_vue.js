@@ -16,6 +16,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 /* harmony import */ var lodash_debounce__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash/debounce */ "./node_modules/lodash/debounce.js");
 /* harmony import */ var lodash_debounce__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_debounce__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Composables_useCurrentUser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Composables/useCurrentUser */ "./resources/js/Composables/useCurrentUser.js");
+
 
 
 
@@ -40,6 +42,9 @@ __webpack_require__.r(__webpack_exports__);
         replace: true
       });
     }, 800));
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
+      console.log((0,_Composables_useCurrentUser__WEBPACK_IMPORTED_MODULE_4__.useCurrentUser)());
+    });
     var __returned__ = {
       get props() {
         return props;
@@ -54,6 +59,7 @@ __webpack_require__.r(__webpack_exports__);
         search = v;
       },
       Pagination: _Shared_Pagination_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+      onMounted: vue__WEBPACK_IMPORTED_MODULE_1__.onMounted,
       ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref,
       watch: vue__WEBPACK_IMPORTED_MODULE_1__.watch,
       get Inertia() {
@@ -61,6 +67,9 @@ __webpack_require__.r(__webpack_exports__);
       },
       get debounce() {
         return (lodash_debounce__WEBPACK_IMPORTED_MODULE_3___default());
+      },
+      get useCurrentUser() {
+        return _Composables_useCurrentUser__WEBPACK_IMPORTED_MODULE_4__.useCurrentUser;
       }
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -215,6 +224,65 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 8 /* PROPS */, ["href", "innerHTML", "class"]);
   }), 256 /* UNKEYED_FRAGMENT */))]);
 }
+
+/***/ }),
+
+/***/ "./resources/js/Composables/useCurrentUser.js":
+/*!****************************************************!*\
+  !*** ./resources/js/Composables/useCurrentUser.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useCurrentUser: () => (/* binding */ useCurrentUser)
+/* harmony export */ });
+/* harmony import */ var _Models_User__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Models/User */ "./resources/js/Models/User.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
+
+function useCurrentUser() {
+  return new _Models_User__WEBPACK_IMPORTED_MODULE_0__["default"](_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.page.props.auth.user);
+}
+
+/***/ }),
+
+/***/ "./resources/js/Models/User.js":
+/*!*************************************!*\
+  !*** ./resources/js/Models/User.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ User)
+/* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var User = /*#__PURE__*/function () {
+  function User() {
+    var attributes = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    _classCallCheck(this, User);
+    Object.assign(this, attributes);
+  }
+  _createClass(User, [{
+    key: "follows",
+    value: function follows() {
+      return true;
+    }
+  }, {
+    key: "is",
+    value: function is(user) {
+      return this.id == user.id;
+    }
+  }]);
+  return User;
+}();
+
 
 /***/ }),
 

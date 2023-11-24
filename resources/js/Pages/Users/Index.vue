@@ -1,8 +1,9 @@
 <script setup>
 import Pagination from "@/Shared/Pagination.vue";
-import {ref, watch} from "vue";
+import {onMounted, ref, watch} from "vue";
 import {Inertia} from "@inertiajs/inertia";
 import debounce from "lodash/debounce";
+import {useCurrentUser} from "@/Composables/useCurrentUser";
 
 let props = defineProps({
     users: Object,
@@ -18,6 +19,10 @@ watch(search, debounce(function (value) {
         replace: true
     });
 }, 800));
+
+onMounted(() => {
+    console.log(useCurrentUser());
+});
 </script>
 
 <template>

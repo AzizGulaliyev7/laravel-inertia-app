@@ -1,6 +1,6 @@
 <script setup>
     import { highlightElement } from "@/Services/SintaxHighlighting";
-    import {onMounted, ref} from "vue";
+    import { onMounted, ref } from "vue";
     import { useClipboard } from "@/Composables/useClipboard";
 
     let props = defineProps({
