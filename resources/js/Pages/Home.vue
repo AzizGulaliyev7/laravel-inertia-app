@@ -1,8 +1,13 @@
-<script>
+<script setup>
+    import Highlight from "@/Components/Highlight.vue";
 
-export default {
-
-}
+    let snippet = `
+    class ExampleAgain {
+            public function __construct() {
+                //
+            }
+        }
+    `.trim();
 </script>
 
 <template>
@@ -16,6 +21,10 @@ export default {
     <h2 class="text-3xl">
         Home
     </h2>
+
+    <Highlight :code="snippet">
+
+    </Highlight>
 </template>
 
 <style scoped>

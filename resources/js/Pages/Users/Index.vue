@@ -1,5 +1,5 @@
 <script setup>
-import Pagination from "../../Shared/Pagination.vue";
+import Pagination from "@/Shared/Pagination.vue";
 import {ref, watch} from "vue";
 import {Inertia} from "@inertiajs/inertia";
 import debounce from "lodash/debounce";
@@ -70,7 +70,7 @@ watch(search, debounce(function (value) {
     </div>
 
 
-    <Pagination :links="users.links" class="mt-6"/>
+    <Pagination :links="users.meta.links" class="mt-6"/>
 
 </template>
 
